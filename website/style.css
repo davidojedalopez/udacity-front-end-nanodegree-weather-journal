@@ -1,0 +1,64 @@
+body {
+  margin: auto;
+  width: 800px;
+}
+
+#app {
+
+}
+
+.headline {
+  font-size: 4em;
+  text-align: center;
+}
+
+label {
+  font-size: 1.3em;
+}
+
+.zip,
+.feel {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.zip :not(:last-child),
+.feel :not(:last-child) {
+  padding-right: 1rem;
+}
+
+#zip {
+  padding: .5rem;
+}
+
+#generate {
+  width: 100%;
+  padding: .5rem;
+  outline: none;
+  background-color: black;
+  color: whitesmoke;
+  font-size: 1.5em;
+  border-radius: .25rem;
+}
+
+.entry {
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+.entry-holder-field {
+  padding: 1rem;
+}
+
+.entry-holder-label {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#temp, #date, #content {
+  display: inline-block;
+}
