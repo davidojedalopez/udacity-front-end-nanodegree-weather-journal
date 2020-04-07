@@ -3,8 +3,16 @@ const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&appid=[YOUR_API_KEY_GOES_HERE]';
 
 async function getWeather(url, zipCode, key) {
-  let response = await fetch(url + zipCode + key);
+  let response = await fetch(url + zipCode + key);  
   try {
+    if(response.status === 404) {
+      alert(`No city found for zip code ${zipCode}`);
+      return { 
+        main: { 
+          temp: '' 
+        }
+      };
+    }
     return await response.json();
   } catch (error) {
     console.error(error);
@@ -22,7 +30,7 @@ async function clickListener(event) {
   }
 
   getWeather(baseUrl, zipCode, apiKey)
-    .then(res => {
+    .then(res => {    
       let weatherDetails = {};
 
       let temp = res.main.temp;
@@ -67,16 +75,15 @@ async function updateHTML() {
   });
   try {
     let json = await res.json();
-    let mostRecentEntry = json[json.length - 1];
-
+    
     let date = document.querySelector('#date');
-    date.innerHTML = mostRecentEntry.date;
+    date.innerHTML = json.date;
 
     let temp = document.querySelector('#temp');
-    temp.innerHTML = mostRecentEntry.temperature;
+    temp.innerHTML = json.temperature;
 
     let content = document.querySelector('#content');
-    content.innerHTML = mostRecentEntry.user_response;
+    content.innerHTML = json.user_response;
   } catch (error) {
     console.error(error);
   }

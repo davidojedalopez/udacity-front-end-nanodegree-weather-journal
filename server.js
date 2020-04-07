@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const port = 3000;
 
-projectData = [];
+projectData = {};
 
 const app = express();
 
@@ -16,8 +16,8 @@ app.use(express.static('website'));
 app.get('/all', getAllData)
 
 app.post('/add', (req, res) => {
-  projectData.push(req.body);
-  res.json(projectData[projectData.length - 1]);
+  projectData = req.body;
+  res.json(projectData);
 });
 
 function getAllData(req, res) {  
